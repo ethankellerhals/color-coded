@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> Color Picker </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--bootstrap stylesheet--> 
+    <link rel="stylesheet" href="../../views/bootstrap/css/bootstrap.min.css">
+
+    <!--bootstrap js-->
+    <script src="../../views/bootstrap/js/bootstrap.min.js"></script>
+
+    <!--Local stylesheet-->
+    <link rel="stylesheet" href="../../views/styles/style.css">
+
+    <!-- Font Awesome -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css"
+    rel="stylesheet"
+    />
+    <!-- MDB -->
+    <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"
+    ></script>
+    <!-- <script>
+      $(document).ready(function() {
+        $("welcomeModal").modal('show');
+      });
+    </script> -->
+
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Navbar brand -->
+        <a class="navbar-brand me-2" href="../../views/pages/index.html">
+          <img
+            src="../../views/images/CSCI_3308_logo.jpg"
+            height="26"
+            alt="Color Picker"
+            loading="lazy"
+            style="margin-top: -1px;"
+          />
+        </a>
+
+        <!-- Toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-mdb-toggle="collapse"
+          data-mdb-target="#navbarButtonsExample"
+          aria-controls="navbarButtonsExample"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarButtonsExample">
+          <!-- Left links -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../views/pages/about.html">About</a>
+            </li>
+          </ul>
+          <!-- Left links -->
+          
+          <div class="d-flex align-items-center">
+            <!--<button type="button" class="btn btn-link px-3 me-2">
+              Login
+            </button>-->
+            <a class="btn btn-link px-3 me-2"
+                href="../../views/pages/login.html"
+                type="button">Login</a>
+            <!--<button type="button" class="btn btn-primary me-3">
+              <a href="register.html"></a>
+              Sign up
+            </button> -->
+            <a class="btn btn-primary me-3"
+                href="../../views/pages/register.html"
+                type="button">
+                Sign up
+            </a>
+            <!--
+            <a
+              class="btn btn-dark px-3"
+              href="https://github.com/CU-CSCI-3308-Summer-2022/csci-3308-summer22-003"
+              role="button"
+              ><i class="fab fa-github"></i
+            ></a> -->
+          </div>
+        </div>
+        <!-- Collapsible wrapper -->
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+
+    <!-- <div id="welcomeModal" class="modal fade" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <p>Please select a color</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+      </div>
+    </div> -->
+
+    <div class="container-wrapper" id="canvas_container">
+		<canvas id="colorCanvas" class="img-responsive" width="2010" height="745"></canvas>
+      <div id="mainContainer" class="container">
+
+          <!-- Modal -->
+			<!-- Good -->
+			<form action="/add_color" method="post">
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<!-- Good -->
+				<div class="modal-dialog">
+					<!-- Good -->
+					<div class="modal-content">
+						<!-- Good -->
+						<div class="modal-header">
+						<h4 class="modal-title" id="modalTitle">Selected Color</h4>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<!-- Good -->
+						<div id="modal-body">
+							<!-- Good -->
+							<div class="row" id="rowProperties">
+								<div class="col">
+								<h5>Color:</h5>
+								</div>
+								<div class="col">
+								<!--<h5>Hexadecimal:</h5> -->
+								<h5>Hexadecimal:</h5>
+								</div>
+							</div>
+							<!-- Good -->
+							<div class="row" id="rowProperties">
+								<div class="col" id="color"></div>
+								<div class="col"  id="hex"></div>
+							</div>
+							<!-- Good -->
+							<div class="row" id="rowProperties">
+								<div class="col">
+								</div>
+								<h5>Status:</h5>
+							</div>
+							<!-- Good -->
+							<div class="row" id="rowProperties">
+								<div class="col" id="status"></div>
+							</div>
+							<!-- Good -->
+							<!-- <div class="row" id="rowProperties">
+								<div class="col"></div>
+								<h5>Complementary Colors:</h5>
+							</div> -->
+							<div class="row" id="rowProperties">
+								<div class="col"></div>
+								<h5>Saved Colors:</h5> 
+							</div>
+							<div class="row" id="savedColors">
+								<div class="col" name="savedColor_0" id="circle">
+										<div class="circle-txt" id="savedColorHex_0"></div>
+								</div>
+								<div class="col" name="savedColor_1" id="circle">
+									<div class="circle-txt" id="savedColorHex_1"></div>
+								</div>
+								<div class="col" name="savedColor_2" id="circle">
+									<div class="circle-txt" id="savedColorHex_2"></div>
+								</div>
+							</div>
+							<div class="row" id="savedColors">
+								<div class="col" name="savedColor_3" id="circle">
+									<div class="circle-txt" id="savedColorHex_3"></div>
+								</div>
+								<div class="col" name="savedColor_4" id="circle">
+									<div class="circle-txt" id="savedColorHex_4"></div>
+								</div>
+								<div class="col" name="savedColor_5" id="circle">
+									<div class="circle-txt" id="savedColorHex_5"></div>
+								</div>
+							</div>
+						</div>
+						<!-- Good -->
+						<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <!-- is this what you mean by save color button? might need to be in a <form> yep and I added the form so it's fine--> 
+						<button type="submit" id="save_color_btn" class="btn btn-primary">Save Color</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<input type="hidden" id="UserID" name="UserID">
+			</form>
+      <label for="customRange1" class="form-label" class="text-center">Brightness</label>
+      <input type="range" class="form-range" id="colorSlider" min="0%" max="100%" oninput="initColorPicker(this.value)">
+		</div>
+    </div>
+
+  <script src="../../views/scripts/fun.js"></script>
+
+  <!-- add bootstrap Popover when color selected -->
+	
+<!--<div id="sample" style="width:80px;height:80px;background-color:grey"> <% input %> </div> -->
+
+    <script>
+    <% if (input && input[0] && input[0].userid){ %>
+        console.log("login found, checking for color sample");
+		console.log('<%= input[0].userid %>');
+        document.getElementById("UserID").value = '<%= input[0].userid %>';
+        <% if (input[0].colors && input[0].colors[0]){ %>
+			console.log("sample found, updating preview");
+			console.log("length is:");
+			console.log('<%= input[0].colors.length %>');
+			<% for (var i = 0; i < input[0].colors.length && i < 6; i++) { %>
+				console.log("adding color:");
+				console.log('savedColor_' + '<%= i %>');
+				console.log('<%= input[0].colors[i] %>');
+				document.getElementsByName('savedColor_' + '<%= i %>')[0].style.backgroundColor = '<%= input[0].colors[i] %>';
+				document.getElementById('savedColorHex_' + '<%= i %>').innerHTML = '<%= input[0].colors[i] %>';
+			<% } %>
+        <% } %>
+     <% } %>
+    </script>
+  </body>
+</html>
+

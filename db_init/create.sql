@@ -1,0 +1,12 @@
+CREATE DATABASE color_coded_db;
+
+DROP TABLE IF EXISTS Colors CASCADE;
+CREATE TABLE IF NOT EXISTS Colors (
+  UserID SERIAL NOT NULL,
+  UserName VARCHAR(45) NULL,
+  UserPw VARCHAR(45) NULL,
+  AcctCreated DATE NULL,
+  LastLogin DATE NULL,
+  Colors VARCHAR(7)[] NULL,
+  PRIMARY KEY (UserID)
+ );
